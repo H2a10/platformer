@@ -1,4 +1,5 @@
 from base import *
+from itertools import cycle
 class Block(Base):
     def __init__(self,x,y,image=0,solid=None):
         #images is a integer to be looked up in IMAGE or surface
@@ -12,8 +13,20 @@ class Block(Base):
             actw.blit(IMAGE[self.image],map_coords((self.x,self.y)))
         else:
             actw.blit(self.image,map_coords((self.x,self.y)))
-def BlockMul(Block):
-    def __init__(self,x,y,image=[0]
+
+class BlockMul(Block):
+    def __init__(self,x,y,images=[0],solid=None):
+        self.next=False
+        super().__init__(x,y,images[0])
+        assert alltype(images)
+        self.images=cycle(images)
+        if solid:
+            self.solid=solid
+    def update(self):
+        if self.next:
+            self.image=next(self.images)
+            self.next=False
+        super().update()
 IMAGE=[None]
 for x in range(1,79):
     IMAGE.append(f"{x}.png")
@@ -25,4 +38,4 @@ s.fill(BK)
 IMAGE[0]=s
 del s
 IMAGE=tuple(IMAGE)
-nigger=1
+
