@@ -25,4 +25,4 @@ s.fill(BK)
 IMAGE[0]=s
 del s
 IMAGE=tuple(IMAGE)
-
+nigger=1
