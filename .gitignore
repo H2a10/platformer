@@ -3,6 +3,8 @@ __pycache__/
 *.py[cod]
 *$py.class
 
+#mac anoying file
+.DS_STORE
 # C extensions
 *.so
 
