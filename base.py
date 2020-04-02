@@ -1,10 +1,16 @@
-import pygame,math
+import pygame,math,os
 from pygame.locals import *
-
+p=pygame
 #CONSTANTS
 WIDTH=512
 HEIGHT=256
+BLACK=(0,0,0)
+WHITE=(255,255,255)
+BK=BLACK
 
+
+
+p.init()
 class Base(pygame.sprite.Sprite):
     def __init__(self,x,y,image):
         super().__init__()
@@ -22,3 +28,17 @@ class MoveSteady(Base):
         self.v=p.Vector2((math.cos(self.angle)*self.speed),(math.sin(self.angle)*self.speed))
     def update(self):
         self.rect.pos=tuple(self.v)
+w=p.display.set_mode((WIDTH,HEIGHT),0,32)
+#global functions
+def load_image(file):
+    """ loads an image, prepares it for play
+    """
+    file = os.path.join(os.path.dirname(__file__),"recs", "images", file)
+    try:
+        surface = p.image.load(file)
+    except p.error:
+        raise SystemExit('Could not load image "%s" %s' % (file, p.get_error()))
+    return surface.convert()
+
+def map_coords(xy):
+	return xy[0]*16,xy[1]*16
