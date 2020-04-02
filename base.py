@@ -50,3 +50,12 @@ def load_image(file):
 def map_coords(xy):
 	return xy[0]*16,xy[1]*16
 solidb=p.sprite.Group()
+
+def alltype(iterable):
+    t=type(iterable[0])
+    for x in iterable:
+        if not isinstance(x,t):
+            return False
+    return True
+        
+
