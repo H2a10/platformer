@@ -9,10 +9,11 @@ class Block(Base):
             solidb.add(self)
     def update(self):
         if isinstance(self.image,int):
-            w.blit(IMAGE[self.image],map_coords((self.x,self.y)))
+            actw.blit(IMAGE[self.image],map_coords((self.x,self.y)))
         else:
-            w.blit(self.image,map_coords((self.x,self.y)))
-
+            actw.blit(self.image,map_coords((self.x,self.y)))
+def BlockMul(Block):
+    def __init__(self,x,y,image=[0]
 IMAGE=[None]
 for x in range(1,79):
     IMAGE.append(f"{x}.png")

@@ -21,7 +21,7 @@ class Base(pygame.sprite.Sprite):
         self.y=y
         self.image=image
     def update(self):
-        w.blit(self.image,map_coords((self.x,self.y)))
+        actw.blit(self.image,map_coords((self.x,self.y)))
 class MoveSteady(Base):
     def __init__(self,x,y,image,angle,speed):
         #angle in degrees
@@ -34,6 +34,7 @@ class MoveSteady(Base):
         self.rect.pos=tuple(self.v)
         super().update()
 w=p.display.set_mode((WIDTH,HEIGHT),0,32)
+actw=w
 w.fill(BK)
 #global functions
 def load_image(file):
