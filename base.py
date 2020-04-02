@@ -14,7 +14,7 @@ class Base(pygame.sprite.Sprite):
 
 class MoveSteady(Base):
     def __init__(self,x,y,image,angle,speed):
-        #ngle in degrees
+        #angle in degrees
         super().__init__(x,y,angle)
         self.rect=self.image.get_rect()
         self.speed=abs(speed)
