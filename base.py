@@ -2,12 +2,15 @@ import pygame,math,os
 from pygame.locals import *
 p=pygame
 #CONSTANTS
-WIDTH=512
-HEIGHT=256
+BLOCK=16
+NX=32
+NY=16
+WIDTH=BLOCK*NX
+HEIGHT=BLOCK*NY
 BLACK=(0,0,0)
 WHITE=(255,255,255)
 BK=BLACK
-
+pupdate=p.display.update
 
 
 p.init()
@@ -17,7 +20,8 @@ class Base(pygame.sprite.Sprite):
         self.x=x
         self.y=y
         self.image=image
-
+    def update(self):
+        w.blit(self.image,map_coords((self.x,self.y)))
 class MoveSteady(Base):
     def __init__(self,x,y,image,angle,speed):
         #angle in degrees
@@ -28,7 +32,9 @@ class MoveSteady(Base):
         self.v=p.Vector2((math.cos(self.angle)*self.speed),(math.sin(self.angle)*self.speed))
     def update(self):
         self.rect.pos=tuple(self.v)
+        super().update()
 w=p.display.set_mode((WIDTH,HEIGHT),0,32)
+w.fill(BK)
 #global functions
 def load_image(file):
     """ loads an image, prepares it for play
@@ -42,3 +48,4 @@ def load_image(file):
 
 def map_coords(xy):
 	return xy[0]*16,xy[1]*16
+solidb=p.sprite.Group()
